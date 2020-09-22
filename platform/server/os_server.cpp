@@ -67,7 +67,7 @@ void OS_Server::initialize_core() {
 	OS_Unix::initialize_core();
 }
 
-Error OS_Server::initialize(const VideoMode &p_desired, int p_video_driver, int p_audio_driver) {
+Error OS_Server::initialize(const OS::VideoMode &p_desired, int p_video_driver, int p_audio_driver) {
 	args = OS::get_singleton()->get_cmdline_args();
 	current_videomode = p_desired;
 	main_loop = nullptr;
@@ -129,7 +129,7 @@ Point2 OS_Server::get_mouse_position() const {
 void OS_Server::set_window_title(const String &p_title) {
 }
 
-void OS_Server::set_video_mode(const VideoMode &p_video_mode, int p_screen) {
+void OS_Server::set_video_mode(const OS::VideoMode &p_video_mode, int p_screen) {
 }
 
 OS::VideoMode OS_Server::get_video_mode(int p_screen) const {
@@ -140,7 +140,7 @@ Size2 OS_Server::get_window_size() const {
 	return Vector2(current_videomode.width, current_videomode.height);
 }
 
-void OS_Server::get_fullscreen_mode_list(List<VideoMode> *p_list, int p_screen) const {
+void OS_Server::get_fullscreen_mode_list(List<OS::VideoMode> *p_list, int p_screen) const {
 }
 
 MainLoop *OS_Server::get_main_loop() const {

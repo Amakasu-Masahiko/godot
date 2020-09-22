@@ -31,6 +31,7 @@
 #ifndef OS_SERVER_H
 #define OS_SERVER_H
 
+#include "core/os/os.h"
 #include "core/input/input.h"
 #include "drivers/dummy/texture_loader_dummy.h"
 #include "drivers/unix/os_unix.h"
@@ -38,7 +39,7 @@
 #include "platform/osx/crash_handler_osx.h"
 #include "platform/osx/semaphore_osx.h"
 #else
-#include "platform/x11/crash_handler_linuxbsd.h"
+#include "platform/linuxbsd/crash_handler_linuxbsd.h"
 #endif
 #include "servers/audio_server.h"
 #include "servers/rendering/rasterizer.h"
@@ -48,7 +49,7 @@
 
 class OS_Server : public OS_Unix {
 	RenderingServer *rendering_server;
-	VideoMode current_videomode;
+	OS::VideoMode current_videomode;
 	List<String> args;
 	MainLoop *main_loop;
 
@@ -74,7 +75,7 @@ protected:
 	virtual const char *get_audio_driver_name(int p_driver) const;
 
 	virtual void initialize_core();
-	virtual Error initialize(const VideoMode &p_desired, int p_video_driver, int p_audio_driver);
+	virtual Error initialize(const OS::VideoMode &p_desired, int p_video_driver, int p_audio_driver);
 	virtual void finalize();
 
 	virtual void set_main_loop(MainLoop *p_main_loop);
@@ -93,9 +94,9 @@ public:
 
 	virtual bool can_draw() const;
 
-	virtual void set_video_mode(const VideoMode &p_video_mode, int p_screen = 0);
-	virtual VideoMode get_video_mode(int p_screen = 0) const;
-	virtual void get_fullscreen_mode_list(List<VideoMode> *p_list, int p_screen = 0) const;
+	virtual void set_video_mode(const OS::VideoMode &p_video_mode, int p_screen = 0);
+	virtual OS::VideoMode get_video_mode(int p_screen = 0) const;
+	virtual void get_fullscreen_mode_list(List<OS::VideoMode> *p_list, int p_screen = 0) const;
 
 	virtual Size2 get_window_size() const;
 
