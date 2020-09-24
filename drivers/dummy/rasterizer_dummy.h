@@ -40,6 +40,18 @@
 
 class RasterizerSceneDummy : public RasterizerScene {
 public:
+virtual void environment_set_volumetric_fog(RID p_env, bool p_enable, float p_density, const Color &p_light, float p_light_energy, float p_length, float p_detail_spread, float p_gi_inject, RS::EnvVolumetricFogShadowFilter p_shadow_filter) {}
+
+virtual void environment_set_volumetric_fog_volume_size(int p_size, int p_depth) {}
+
+virtual void environment_set_volumetric_fog_filter_active(bool p_enable) {}
+
+virtual void environment_set_volumetric_fog_directional_shadow_shrink_size(int p_shrink_size) {}
+
+virtual void environment_set_volumetric_fog_positional_shadow_shrink_size(int p_shrink_size) {}
+
+virtual void environment_set_fog(RID p_env, bool p_enable, const Color &p_light_color, float p_light_energy, float p_sun_scatter, float p_density, float p_height, float p_height_density)  {}
+
 	/* SHADOW ATLAS API */
 
 	RID shadow_atlas_create() { return RID(); }
@@ -237,8 +249,17 @@ public:
 	virtual void texture_replace(RID p_texture, RID p_by_texture) {}
 	virtual void texture_set_size_override(RID p_texture, int p_width, int p_height) {}
 // FIXME: Disabled during Vulkan refactoring, should be ported.
-#if 0
-	virtual void texture_bind(RID p_texture, uint32_t p_texture_no) = 0;
+#if 1
+virtual void texture_bind(RID p_texture, uint32_t p_texture_no) {};
+
+virtual RID texture_3d_create(Image::Format, int p_width, int p_height, int p_depth, bool p_mipmaps, const Vector<Ref<Image>> &p_data) { return RID(); }
+
+virtual void texture_3d_update(RID p_texture, const Vector<Ref<Image>> &p_data) {}
+virtual Vector<Ref<Image>> texture_3d_get(RID p_texture) const { return Vector<Ref<Image>>(); }
+virtual void particles_emit(RID p_particles, const Transform &p_transform, const Vector3 &p_velocity, const Color &p_color, const Color &p_custom, uint32_t p_emit_flags) {}
+virtual void particles_set_subemitter(RID p_particles, RID p_subemitter_particles) {}
+virtual void particles_set_view_axis(RID p_particles, const Vector3 &p_axis) {}
+
 #endif
 
 	virtual void texture_set_path(RID p_texture, const String &p_path) {}

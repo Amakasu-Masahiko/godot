@@ -5,7 +5,8 @@ import sys
 Import("env")
 
 common_server = [
-    "#platform/linuxbsd/display_server_x11.cpp"    
+    "os_server.cpp",
+    "display_server_headless.cpp"
 ]
 
 if sys.platform == "darwin":

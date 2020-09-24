@@ -31,11 +31,10 @@
 #define X11_ENABLED
 
 #include "main/main.h"
-#include "platform/linuxbsd/display_server_x11.h"
-#include "platform/linuxbsd/os_linuxbsd.cpp"
+#include "os_server.h"
 
 int main(int argc, char *argv[]) {
-	OS_LinuxBSD os;
+	OS_Server os;
 
 	// We must override main when testing is enabled
 	TEST_MAIN_OVERRIDE
